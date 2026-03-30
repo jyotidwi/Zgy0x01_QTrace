@@ -1,3 +1,5 @@
+[中文版](README_zh.md) | English
+
 # Qtrace
 QBDI based Android arm64 trace tool
 

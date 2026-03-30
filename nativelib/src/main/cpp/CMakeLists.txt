@@ -36,10 +36,8 @@ set_target_properties(shadowhook PROPERTIES IMPORTED_LOCATION ${SHADOWHOOK_ROOT}
 # ========================================================================================
 aux_source_directory(hook HOOK_SOURCES)
 aux_source_directory(third THIRD_SOURCES)
-aux_source_directory(seccomp SECCOMP_SOURCES)
 set(PROJECT_SOURCES
     ${THIRD_SOURCES}
-    ${SECCOMP_SOURCES}
     native_main.cpp
     vm.cpp
     jnitrace.cpp

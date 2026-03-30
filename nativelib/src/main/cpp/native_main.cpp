@@ -11,7 +11,6 @@
 #include "jnitrace.h"
 #include "libctrace.h"
 #include "shadowhook.h"
-#include "seccomp/svchook.h"
 using namespace std;
 
 static void addHooks()
@@ -154,7 +153,6 @@ void test()
     LOGE("ro.secure:%d,%s",res,value);
 }
 
-#include "seccomp/svchook.h"
 __unused __attribute__((constructor)) void init_main() {
     LOGE("Injected!");
     init_shadowhook();

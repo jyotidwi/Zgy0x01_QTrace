@@ -1,14 +1,3 @@
-function hookJava () {
-  console.log("start hook java")
-  Java.perform(function () {
-  })
-}
-
-function hook (sobase) {
-  //这里添加自定义hook
-  console.log("hook")
-}
-
 function hookLoadLibrary () {
   var f_dlopen = Module.findExportByName(null, "__loader_dlopen")
   Interceptor.attach(f_dlopen, {

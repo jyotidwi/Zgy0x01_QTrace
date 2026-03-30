@@ -1,22 +1,23 @@
 [中文版](README_zh.md) | English
 
 # Qtrace
-基于qbdi的安卓arm64真机trace工具
+QBDI based Android arm64 trace tool
 
 # Features
-* 自定义函数hook监控
-* 自定义jni trace
-* 自定义libc trace
+* arm64 code Instrumentation,memory read/write monitor
+* custome function monitor
+* custome jni monitor
+* custome libc monitor
 
 # Usage
-1.将trace的目标so push到/data/local/tmp目录下
+1.push your target so file to /data/local/tmp
 
-2.root 环境下执行 setenforce 0
+2.under root ,run cmd: setenforce 0
 
-3.在 /nativelib/cpp/native_main.cpp 中，修改void config()中的相关配置
+3.modify void config() in /nativelib/cpp/native_main.cpp
 
-4.在qbdihook.cpp中添加自定义hook，在libctrace.cpp中添加需要trace 的libc函数，在jnitrace.cpp中添加需要trace的jni函数
+4.add custome function monitor in qbdihook.cpp，add custome libc function monitor in libctrace.cpp，add custome jni function monitoe in jnitrace.cpp
 
-5.Build-Generate Apks,将自动生成libnativelib.so ,并push 到 /data/local/tmp目录下
+5.run Build-Generate Apks,push the output lib file: libnativelib.so , to /data/local/tmp
 
-6.使用第三方工具注入libnativelib.so 到目标进程，可使用项目自带的frida脚本inject.js
+6.inject libnativelib.so into the target process ，you can use the frida script inject.js inside this project

@@ -1,7 +1,7 @@
 [中文版](README.md) | English
 
 # Qtrace
-QBDI based Android arm64 trace tool
+QBDI based Android arm64 trace tool,this is an android studio project.
 
 # Features
 * arm64 code Instrumentation,memory read/write monitor

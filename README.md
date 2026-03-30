@@ -1,7 +1,7 @@
 中文 | [English](README_en.md)
 
 # Qtrace
-基于qbdi的安卓arm64真机trace工具
+基于qbdi的安卓arm64真机trace工具,使用android studio构建
 
 # Features
 * arm64真机指令trace，内存读写监控

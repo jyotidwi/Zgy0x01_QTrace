@@ -1,0 +1,76 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.f.qbdi'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.f.qbdi"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+        ndk{
+            abiFilters "arm64-v8a"
+        }
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation project(path: ':nativelib')
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
+
+// 自定义任务：拷贝nativelib的so文件到项目根目录
+task copySoFiles {
+    description 'Copy nativelib so files to project root directory'
+    
+    // 依赖于nativelib模块的构建任务
+    dependsOn ':nativelib:build'
+    
+    doLast {
+        // 定义源文件路径 - 使用merged_native_libs/debug路径
+        def sourceFile = file("${project.rootDir}/nativelib/build/intermediates/stripped_native_libs/debug/out/lib/arm64-v8a/libnativelib.so")
+        
+        // 定义目标路径（项目根目录）
+        def targetDir = file("${project.rootDir}")
+        def targetFile = new File(targetDir, "libnativelib.so")
+        
+        // 检查源文件是否存在并拷贝
+        if (sourceFile.exists()) {
+            println "Build success: ${sourceFile.absolutePath} "
+        } else {
+            println "Error: Source file not found at ${sourceFile.absolutePath}"
+        }
+    }
+}
+// 让assembleDebug和assembleRelease任务依赖于copySoFiles
+afterEvaluate {
+    tasks.matching { it.name.startsWith('assemble') }.all { assembleTask ->
+        assembleTask.finalizedBy copySoFiles
+    }
+}

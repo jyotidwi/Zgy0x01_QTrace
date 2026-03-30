@@ -1,0 +1,13 @@
+/app/.cxx
+/app/build
+/nativelib/.cxx
+/nativelib/build
+/.gradle
+/.ideafrida/dd.apk
+nativelib/src/main/cpp/qbdi-arm64/lib/libQBDI.a
+/.idea/
+# Gradle build files
+.gradle/
+build/
+*.so
+*DS_Store

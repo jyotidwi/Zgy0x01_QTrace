@@ -73,7 +73,6 @@ string libname;
  * */
 const char* libdir = "/data/local/tmp/";
 string libpath;
-
 /*需要trace的函数地址*/
 size_t trace_func = 0;
 

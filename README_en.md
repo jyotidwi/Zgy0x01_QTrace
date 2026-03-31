@@ -1,6 +1,6 @@
 [中文版](README.md) | English
 
-# Qtrace
+# QTrace
 QBDI based Android arm64 trace tool,this is an android studio project.
 
 # Features
@@ -10,6 +10,9 @@ QBDI based Android arm64 trace tool,this is an android studio project.
 * custome libc monitor
 
 # Usage
+
+0.unzip libQBDI.zip under nativelib\src\main\cpp\qbdi-arm64\lib.Or download latest libQBDI.a from https://github.com/QBDI/QBDI/releases/ ,we use andorid-aarch64.then put libQBDI.a under nativelib\src\main\cpp\qbdi-arm64\lib
+
 1.push your target so file to /data/local/tmp
 
 2.under root ,run cmd: setenforce 0
